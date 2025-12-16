@@ -24,21 +24,20 @@ class Solution:
         
         if not root:
             return 0
-        
+
+        count = 0
         queue = []
         queue.append(root)
-        count = 1
-        while len(queue)!=0:
 
-            i = len(queue)
-            for i in range(0,i):
-                element = queue.pop(0)
-
-                if element.left==None and element.right == None:
+        while queue:
+            for i in range(len(queue)):
+                node = queue.pop(0)
+                if not node.left and not node.right:
+                    count+=1
                     return count
-                
-                if element.left:
-                    queue.append(element.left)
-                if element.right:
-                    queue.append(element.right)
-            count +=1
+                else:
+                    if node.left:
+                        queue.append(node.left)
+                    if node.right:
+                        queue.append(node.right)
+            count += 1
