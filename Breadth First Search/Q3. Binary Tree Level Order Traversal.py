@@ -13,29 +13,25 @@ Prblem type: Medium
 
 Problem link: https://leetcode.com/problems/binary-tree-level-order-traversal/
 '''
-
+from collections import deque
 class Solution:
     def levelOrder(self, root):
         
-        arr =[]
-
         if not root:
-            return arr
+            return []
 
-        queue = []
+        result = []
+        queue = deque()
         queue.append(root)
 
-        while len(queue)!=0:
-
-            temp_arr = []
-            for i in range(0,len(queue)):
-                node = queue.pop(0)
-                temp_arr.append(node.val)
-
-                if node.left:
+        while queue:
+            level = []
+            for i in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                if node and node.left:
                     queue.append(node.left)
-                if node.right:
+                if node and node.right:
                     queue.append(node.right)
-                
-            arr.append(temp_arr)
-        return arr
+            result.append(level)
+        return result
