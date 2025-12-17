@@ -22,23 +22,18 @@ class Solution:
 
         if not root:
             return 0
-        
+
+        count = 0
         queue = []
         queue.append(root)
-        count = 0
         
-        while len(queue)!=0:
-
-            for i in range(0,len(queue)):
-
+        while queue:
+            for i in range(len(queue)):
                 node = queue.pop(0)
-
-                if node.left:
+                if node and node.left:
                     queue.append(node.left)
-                if node.right:
+                if node and node.right:
                     queue.append(node.right)
-                
             count += 1
-
         return count
         
