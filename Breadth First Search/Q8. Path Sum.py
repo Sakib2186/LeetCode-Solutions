@@ -31,3 +31,24 @@ class Solution:
         if (target - root.val) == 0  and root.left == None and root.right == None:
             return True
         return self.hasPathSum(root.left,target-root.val) or self.hasPathSum(root.right,target-root.val)
+    
+#OR
+
+class Solution:
+    def hasPathSum(self, root, target) -> bool:
+        
+        if not root:
+            return False 
+
+        stack = []
+        stack.append((root,root.val))
+
+        while stack:
+            node,val = stack.pop()
+            if val == target and not node.left and not node.right:
+                return True
+            if node.left:
+                stack.append((node.left,val+node.left.val))
+            if node.right:
+                stack.append((node.right,val+node.right.val))
+        return False
