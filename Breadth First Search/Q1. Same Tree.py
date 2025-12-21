@@ -21,10 +21,18 @@ Problem link: https://leetcode.com/problems/same-tree/
 class Solution:
     def isSameTree(self, p, q) -> bool:
         
-        if not p and not q:
-            return True
-        
-        if p and q and p.val == q.val:
-            return self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
-        
-        return False
+        stack = [(p,q)]
+
+        while stack:
+            node1,node2 = stack.pop()
+            if node1 and node2:
+                if node1.val != node2.val:
+                    return False
+            elif (node1 and not node2) or (not node1 and node2):
+                return False
+            
+            if node1 and node2:
+                stack.append((node1.left,node2.left))
+                stack.append((node1.right,node2.right))
+
+        return True
