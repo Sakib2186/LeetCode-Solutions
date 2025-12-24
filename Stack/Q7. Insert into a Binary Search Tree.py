@@ -64,4 +64,4 @@ class Solution:
                 root = temp
                 return root
         
-# Time Complexity : O(lg2)
+# Time Complexity : O(lg2) because divide and conquere algorithm
