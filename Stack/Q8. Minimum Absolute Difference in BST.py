@@ -28,37 +28,23 @@ Problem Link: https://leetcode.com/problems/minimum-absolute-difference-in-bst/
 
 
 '''
-from collections import deque
+
 class Solution:
-    
+
     def getMinimumDifference(self, root) -> int:
 
-        queue = deque()
-        queue.append(root)
-        result = float('inf')
-
-        stack = [root]
-
-        while queue:
-            for i in range(len(queue)):
-                node = queue.popleft()
-                if node.left:
-                    result = min(result,abs(node.val-node.left.val))
-                    queue.append(node.left)
-                if node.right:
-                    result = min(result,abs(node.val-node.right.val))
-                    queue.append(node.right)
-                print(result)
-
-        while stack:
-            node = stack.pop()
-            if node.left:
-                result = min(result,abs(node.val-node.left.val))
-                stack.append(node.left)
-            if node.right:
-                result = min(result,abs(node.val-node.right.val))
-                stack.append(node.right)
+        minDiff = float('inf')
+        prevVal = float('-inf')
         
-        return result
-
-#solution not correct, will try again on own
+        stack = []
+        while root or stack:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack.pop()
+                minDiff = min(minDiff, root.val-prevVal)
+                prevVal = root.val
+                root = root.right
+        
+        return minDiff
