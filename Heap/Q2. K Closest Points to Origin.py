@@ -50,3 +50,5 @@ class Solution:
             if v in result:
                 temp.append(points[k])
         return temp
+    
+#ime complexity very bad, need to optimize
