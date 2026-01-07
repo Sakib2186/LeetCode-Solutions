@@ -41,20 +41,12 @@ class Solution:
     def kClosest(self, points, k):
         dis = []
         dic = {}
-        for point in points:
-            x = point[0]
-            y = point[1]
+        for index,(x,y) in enumerate(points):
             dis.append(math.sqrt(x**2 + y**2))
-            dic[str(point)] = math.sqrt(x**2 + y**2)
-        result =[]
-        for i in dis:
-            heapq.heappush(result,i)
-            if len(result)>k:
-                heapq.heappop(result)
-        print(result)
-        print(dic)
+            dic[index] = math.sqrt(x**2 + y**2)
+        result = heapq.nsmallest(k,dis)
         temp = []
-        for i in result:
-            if str(i) in dic:
-                temp.append(dic[str(i)])
+        for k,v in dic.items():
+            if v in result:
+                temp.append(points[k])
         return temp
