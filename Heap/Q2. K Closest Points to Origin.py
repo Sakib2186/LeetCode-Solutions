@@ -37,18 +37,13 @@ Problem Link: https://leetcode.com/problems/k-closest-points-to-origin/descripti
 
 '''
 import math,heapq
-class Solution:
-    def kClosest(self, points, k):
-        dis = []
-        dic = {}
-        for index,(x,y) in enumerate(points):
-            dis.append(math.sqrt(x**2 + y**2))
-            dic[index] = math.sqrt(x**2 + y**2)
-        result = heapq.nsmallest(k,dis)
-        temp = []
-        for k,v in dic.items():
-            if v in result:
-                temp.append(points[k])
-        return temp
-    
-#ime complexity very bad, need to optimize
+def kClosest(self, points, k):
+        min_heap = []
+
+        for (x,y) in points:
+            distance = -math.sqrt(x**2 + y**2)
+            heapq.heappush(min_heap,(distance,x,y))
+            if len(min_heap) > k:
+                heapq.heappop(min_heap)
+
+        return [[x,y] for (distance,x,y) in min_heap]
