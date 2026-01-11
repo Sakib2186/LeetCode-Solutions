@@ -49,13 +49,14 @@ class Solution:
         min_heap =[]
         dic = {}
         for num in nums:
-            heapq.heappush(min_heap,num)
-        
-        while len(min_heap)>0:
-            element = heapq.heappop(min_heap)
-            if element in dic:
-                dic[element] += 1
+            if num in dic:
+                dic[num] += 1
             else:
-                dic[element] = 1
+                dic[num] = 1
 
-        return [x for x,v in list(dic.items())[0:k]]
+        for i,v in dic.items():
+            heapq.heappush(min_heap,(v,i))
+            if len(min_heap)>k:
+                heapq.heappop(min_heap)
+
+        return [x[1] for x in min_heap]
