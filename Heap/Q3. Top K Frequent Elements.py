@@ -60,3 +60,18 @@ class Solution:
                 heapq.heappop(min_heap)
 
         return [x[1] for x in min_heap]
+
+#or can use counter to get frquency of num in a list
+from collections import Counter
+class Solution:
+    def topKFrequent(self, nums, k):
+        
+        min_heap =[]
+        counter_dictionary = Counter(nums)
+
+        for num,freq in counter_dictionary.items():
+            heapq.heappush(min_heap,(freq,num))
+            if len(min_heap) > k:
+                heapq.heappop(min_heap)
+
+        return [x[1] for x in min_heap]
