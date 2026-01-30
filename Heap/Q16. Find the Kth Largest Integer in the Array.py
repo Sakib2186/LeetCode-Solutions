@@ -67,6 +67,7 @@ class Solution:
         min_heap = []
         for i in nums:
             heapq.heappush(min_heap,int(i))
-        k_largest = heapq.nlargest(k,min_heap)
-        return str(k_largest[-1])
+            if len(min_heap) > k:
+                heapq.heappop(min_heap)
+        return str(min_heap[0])
         
