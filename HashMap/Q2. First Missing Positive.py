@@ -54,3 +54,4 @@ class Solution:
                 return i
         return max_value + 1
         
+# Could be made better
