@@ -51,4 +51,6 @@ class Solution:
                 result.append([arr[prev_index],arr[i]])
 
         return result
+
+# can be optmized
         
