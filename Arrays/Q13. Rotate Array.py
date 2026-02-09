@@ -42,15 +42,21 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        """
+        Do not return anything, modify nums in-place instead.
+        """
         min_heap = []
         for i in range(len(nums)):
             new_pos = i + k
-            if new_pos >= len(nums):
+            while new_pos >= len(nums):
                 new_pos = new_pos - len(nums)
             heapq.heappush(min_heap,(new_pos,nums[i]))
-        print(min_heap)
 
         result = []
         while min_heap:
-            result.append(heapq.heappop(min_heap)[1])
-        nums = result
+            idx,val = heapq.heappop(min_heap)
+            result.append(val)
+        
+        for i in range(len(nums)):
+            nums[i] = result[i]
+        
