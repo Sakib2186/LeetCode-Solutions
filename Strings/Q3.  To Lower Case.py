@@ -36,3 +36,5 @@ Problem Link: https://leetcode.com/problems/to-lower-case/description/
 class Solution:
     def toLowerCase(self, s: str) -> str:
         return s.lower()
+
+# Can be performed using ASCII values as well, but built in functions are optimized and easier to read.
