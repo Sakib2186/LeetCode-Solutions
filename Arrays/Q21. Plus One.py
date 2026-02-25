@@ -52,3 +52,6 @@ class Solution:
             sum_ = (sum_ // 10)
             result.appendleft(rem)
         return list(result)
+
+
+# Can be optimized
